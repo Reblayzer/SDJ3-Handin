@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+message Product{
+  int64 id = 1;
+}
+
+message Animal{
+  int64 id = 1;
+}
+
+message ProductList{
+  repeated Product products = 1;
+}
+
+message AnimalList{
+  repeated Animal animals = 1;
+}
+
+service ProductService{
+  rpc GetProductWithAnimal(Animal) returns (ProductList);
+  rpc GetAnimalsInProduct(Product) returns (AnimalList);
+}

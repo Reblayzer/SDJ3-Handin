@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+message Animal{
+  int64 id = 1;
+  double weight = 2;
+  int32 dateOfRegistration = 3;
+  int32 monthOfRegistration = 4;
+  int32 yearOfRegistration = 5;
+  int64 OriginId = 6;
+}
+
+message Date{
+  int32 dateOfRegistration = 1;
+  int32 monthOfRegistration = 2;
+  int32 yearOfRegistration = 3;
+}
+
+message AnimalCreate{
+  double weight = 1;
+  int32 dateOfRegistration = 2;
+  int32 monthOfRegistration = 3;
+  int32 yearOfRegistration = 4;
+    }
+
+message AnimalList{
+  repeated Animal animals = 1;
+}
+
+message GetAnimalRequest{
+  int64 id = 1;
+}
+
+message Empty{}
+
+message GetAnimalsByOriginRequest{
+  int64 id = 1;
+}
+
+service AnimalService{
+  rpc GetAnimal(GetAnimalRequest) returns (Animal);
+  rpc GetAnimals(Empty) returns (AnimalList);
+  rpc GetAnimalsByOrigin(GetAnimalsByOriginRequest) returns (AnimalList);
+  rpc CreateAnimal(AnimalCreate) returns (Animal);
+  rpc GetAnimalsByDate(Date) returns (AnimalList);
+}
